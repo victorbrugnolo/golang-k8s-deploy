@@ -2,4 +2,7 @@ FROM golang:latest
 
 WORKDIR /app
 
-CMD ["tail", "-f", "/dev/null"]
+COPY . .
+
+RUN GOOS=linux go build -ldflags="-w -s" -o server .
+CMD ["./server"]
